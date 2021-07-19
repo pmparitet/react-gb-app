@@ -1,12 +1,8 @@
 .App {
-    text-align: center;
+    text-align: left;
+    margin: 20px;
 }
 
-.message {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
-    background-color: darkorange;
-    min-height: 100vh;
+.MessageForm {
+    margin-top: 50px;
 }
