@@ -1,3 +1,4 @@
+import { List } from '@material-ui/core';
 import { MessageText } from './MessageText/MessageText';
 
 export function MessageList(props) {
@@ -5,5 +6,9 @@ export function MessageList(props) {
         <MessageText key={index} author={message.author} text={message.text} />
     ));
 
-    return <div>{renderMessageList}</div>;
+    return (
+        <div>
+            <List>{renderMessageList}</List>
+        </div>
+    );
 }
