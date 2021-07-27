@@ -2,6 +2,8 @@ import { useEffect, useState } from 'react';
 import './App.css';
 import { MessageForm } from './components/MessageForm/MessageForm';
 import { MessageList } from './components/MessageList/MessageList';
+import { Grid, Paper } from '@material-ui/core';
+import { ChatList } from './components/ChatList/ChatList';
 
 function App() {
     const [value, setValue] = useState('');
@@ -27,8 +29,30 @@ function App() {
 
     return (
         <div className="App">
-            <MessageList messageList={messageList} />
-            <MessageForm value={value} handleChange={handleChange} changeMessageList={changeMessageList} />
+            <Grid container spacing={1}>
+                <Grid item xs={12} sm={3}>
+                    <Paper>
+                        <ChatList />
+                    </Paper>
+                </Grid>
+                <Grid item xs={12} sm={6}>
+                    <Paper>
+                        <MessageList messageList={messageList} />
+                    </Paper>
+                </Grid>
+            </Grid>
+            <Grid container spacing={1}>
+                <Grid item xs={12} sm={6}>
+                    <Paper>
+                        <MessageForm
+                            messageList={messageList}
+                            value={value}
+                            handleChange={handleChange}
+                            changeMessageList={changeMessageList}
+                        />
+                    </Paper>
+                </Grid>
+            </Grid>
         </div>
     );
 }
