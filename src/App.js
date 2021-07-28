@@ -1,9 +1,9 @@
 import { useEffect, useState } from 'react';
 import './App.css';
-import { MessageForm } from './components/MessageForm/MessageForm';
-import { MessageList } from './components/MessageList/MessageList';
-import { Grid, Paper } from '@material-ui/core';
-import { ChatList } from './components/ChatList/ChatList';
+import { Profile } from './components/Profile/Profile';
+import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import { Main } from './components/Main/Main';
+import { Chats } from './components/Chats/Chats';
 
 function App() {
     const [value, setValue] = useState('');
@@ -26,34 +26,27 @@ function App() {
             }, 1500);
         }
     }, [messageList]);
-
     return (
-        <div className="App">
-            <Grid container spacing={1}>
-                <Grid item xs={12} sm={3}>
-                    <Paper>
-                        <ChatList />
-                    </Paper>
-                </Grid>
-                <Grid item xs={12} sm={6}>
-                    <Paper>
-                        <MessageList messageList={messageList} />
-                    </Paper>
-                </Grid>
-            </Grid>
-            <Grid container spacing={1}>
-                <Grid item xs={12} sm={6}>
-                    <Paper>
-                        <MessageForm
+        <BrowserRouter>
+            <div className="App">
+                <Switch>
+                    <Route exact path="/">
+                        <Main />
+                    </Route>
+                    <Route path="/profile">
+                        <Profile />
+                    </Route>
+                    <Route path="/chats/:chatId?">
+                        <Chats
                             messageList={messageList}
                             value={value}
                             handleChange={handleChange}
                             changeMessageList={changeMessageList}
                         />
-                    </Paper>
-                </Grid>
-            </Grid>
-        </div>
+                    </Route>
+                </Switch>
+            </div>
+        </BrowserRouter>
     );
 }
 
